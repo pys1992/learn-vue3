@@ -1,21 +1,41 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+    <input type="text" v-model="q">
+    <button @click="fetchMovies">Submit</button>
+
+    <div>
+        <div v-for="(movie,index) in movies" :key="index">
+            {{ movie.title }}
+        </div>
+    </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<script>
+export default {
+    data() {
+        return {
+            q: null,
+            movies: []
+        }
+    },
+
+    methods: {
+        fetchMovies() {
+            // fetch(`https://jsonplaceholder.typicode.com/posts?search=${this.q}`)
+            let promise = fetch('https://jsonplaceholder.typicode.com/posts?search')
+
+            let jsonPromise = promise.then(function (response) {
+                return response.json()
+            })
+
+            // jsonPromise.then(function (jsonData) {
+            //     that.movies = jsonData
+            // })
+
+            jsonPromise.then((jsonData) => {
+                this.movies = jsonData
+            })
+
+        }
+    }
 }
-</style>
+</script>
