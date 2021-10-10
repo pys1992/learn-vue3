@@ -14,7 +14,7 @@ export default {
 
         let backendData = this.fetchData(); // from backend
 
-        let myOption = {
+        let config = {
             type: 'line',
             data: {
                 labels: [1, 2, 3, 4, 5, 6, 7],
@@ -28,7 +28,7 @@ export default {
             },
         };
 
-        new Chart(myChartElement, myOption);
+        new Chart(myChartElement, config);
 
     },
     methods: {

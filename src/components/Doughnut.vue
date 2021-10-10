@@ -41,7 +41,7 @@ export default {
             myBackgroundColors[i] = `rgb(${i}, ${i + 99}, ${i + 120})`;
         }
 
-        let myOption = {
+        let config = {
             type: 'doughnut',
             data: {
                 labels: myLabels, // replace 1
@@ -54,7 +54,7 @@ export default {
             },
         };
 
-        let chartInstance = new Chart(myChartElement, myOption);
+        let chartInstance = new Chart(myChartElement, config);
 
     },
     methods: {
